@@ -2,3 +2,4 @@ inputs/*
 secret.txt
 *.o
 .vscode/*
+*.class
