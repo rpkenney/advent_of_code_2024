@@ -52,7 +52,9 @@ public class Part1 {
                         break;
                     }
                 }
+                lineScanner.close();
             }
+            fileScanner.close();
             System.out.println(safe);
         } catch (FileNotFoundException e) {
             System.out.println("Error opening file: " + fileName);
