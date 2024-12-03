@@ -1,0 +1,4 @@
+inputs/*
+secret.txt
+*.o
+.vscode/*
