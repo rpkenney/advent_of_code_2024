@@ -69,10 +69,12 @@ int main() {
     int count = 0;
     for(row = 0; row < content.size(); row++){
         for(col = 0; col < content[0].size(); col++){
+            std::cout << content[row][col];
             if(content[row][col] == 'X'){
                 count++;
             }
         }
+        std::cout << std::endl;
     }
 
     std::cout << count << std::endl;
