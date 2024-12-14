@@ -16,17 +16,25 @@ public:
         y = _y;
     }
 
-    std::vector<Point> getAntinodes(const Point p2){
+    std::vector<Point> getAntinodes(const Point p2, int xMax, int yMax){
         std::vector<Point> antinodes;
 
         int deltaX = p2.x - x;
         int deltaY = p2.y - y;
 
-        Point antinode1(p2.x + deltaX, p2.y + deltaY);
-        antinodes.push_back(antinode1);
+        int i = 1;
+        while(p2.x + deltaX * i < xMax && p2.x + deltaX * i >= 0 && p2.y + deltaY * i < yMax && p2.y + deltaY * i >= 0){
+            Point antinode(p2.x + deltaX * i, p2.y + deltaY * i );
+            antinodes.push_back(antinode);
+            i++;
+        }
 
-        Point antinode2(x - deltaX, y - deltaY);
-        antinodes.push_back(antinode2);
+        i = 1;
+        while(x - deltaX * i < xMax && x - deltaX * i >= 0 && y - deltaY * i < yMax && y - deltaY * i >= 0){
+            Point antinode(x - deltaX * i, y - deltaY * i );
+            antinodes.push_back(antinode);
+            i++;
+        }
         return antinodes;
     }
 
@@ -71,9 +79,9 @@ int main() {
             Point p1 = kv.second[i];
             for(int j = i + 1; j < kv.second.size(); j++){
                 Point p2 = kv.second[j];
-                std::vector<Point> antinodes = p1.getAntinodes(p2);
+                std::vector<Point> antinodes = p1.getAntinodes(p2, content.size(), content[0].size());
                 for( const auto& antinode : antinodes){
-                    if(antinode.x < content.size() && antinode.y < content[0].size()){
+                    if(content[antinode.x][antinode.y] == '.'){
                         content[antinode.x][antinode.y] = '#';
                     }
                 }
@@ -85,10 +93,12 @@ int main() {
     int count = 0;
     for(int row = 0; row < content.size(); row++){
         for(int col = 0; col < content[0].size(); col++){
-            if(content[row][col] == '#'){
+            std::cout << content[row][col];
+            if(content[row][col] != '.'){
                 count++;
             }
         }
+        std::cout << std::endl;
     }
 
     std::cout << count << std::endl;
