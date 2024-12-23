@@ -10,4 +10,4 @@ Language : C++
  - paste your input data into day11.txt
  - cd ../day11
  - g++ day11.cpp -o day11
- - ./part11 numBlinks
+ - ./day11 numBlinks
